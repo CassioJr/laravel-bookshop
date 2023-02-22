@@ -9,4 +9,7 @@ const app = createApp(App);
 import NavBar from './app/components/navbar.vue';
 app.component('navbar', NavBar);
 
+import Footer from './app/components/footer.vue';
+app.component('footer-page', Footer);
+
 app.use(routes).mount('#app');
