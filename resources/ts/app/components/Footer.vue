@@ -1,5 +1,5 @@
 <template>
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border bg-dark"
+    <footer class="d-flex flex-wrap justify-content-between align-items-center border py-2 bg-dark fixed-bottom"
         data-bs-theme="dark">
         <div class="container-fluid">
             <div class="text-center">
@@ -8,3 +8,5 @@
         </div>
     </footer>
 </template>
+
+<script lang="ts" src="./footer.component"></script>
