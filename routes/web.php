@@ -14,3 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/{any}', 'app')->where('any', '.*');
+
+Route::post('/register', [\App\Http\Controllers\UserController::class, 'store']);

@@ -1,23 +1,28 @@
 import '../bootstrap';
-import {createApp} from 'vue'
-import routes from './routes'
-import App from './app.vue'
+import Vue from 'vue';
+import router from './routes';
+import App from './app.vue';
+import Vuelidate from 'vuelidate';
 
-const app = createApp(App);
+Vue.use(Vuelidate);
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-app.component('font-awesome-icon', FontAwesomeIcon);
+import NavBarComponent from '../app/components/navbar.vue';
 
-import { faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+Vue.component('navbar-page', NavBarComponent);
 
-library.add(faTwitter, faUserSecret);
+import FooterComponent from '../app/components/footer.vue';
 
-import NavBar from '../app/components/navbar.vue';
-app.component('navbar', NavBar);
+Vue.component('footer-page', FooterComponent);
 
-import Footer from '../app/components/footer.vue';
-app.component('footer-page', Footer);
+import ShowBookComponent from '../app/components/show-book.vue';
 
-app.use(routes).mount('#app');
+Vue.component('show-book', ShowBookComponent);
+
+
+new Vue({
+    el: '#app',
+    components: {App},
+    template: '<AppComponent/>',
+    router,
+    provide: {},
+});
