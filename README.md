@@ -1,6 +1,6 @@
 # BookShop
 
-A laravel project using vue 2 to build a BookShop website 
+A laravel project using vue 2 to build a BookShop website.
 
 ## How to run
 
