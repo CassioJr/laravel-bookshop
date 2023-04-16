@@ -15,6 +15,7 @@ import FooterComponent from '../app/components/footer.vue';
 Vue.component('footer-page', FooterComponent);
 
 import ShowBookComponent from '../app/components/show-book.vue';
+import AuthService from "./pages/auth/auth.service";
 
 Vue.component('show-book', ShowBookComponent);
 
@@ -24,5 +25,7 @@ new Vue({
     components: {App},
     template: '<AppComponent/>',
     router,
-    provide: {},
+    provide: {
+        authService: () => new AuthService(),
+    },
 });

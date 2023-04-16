@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/{any}', 'app')->where('any', '.*');
 
-Route::post('/register', [\App\Http\Controllers\UserController::class, 'store']);
+Route::resource('/register', UserController::class);

@@ -11,7 +11,7 @@ class UserRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,12 +21,24 @@ class UserRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'nome' => ['required'],
-            'email' => ['required', 'email'],
-            'senha' => ['required'],
+            'name' => ['required'],
+            'email' => ['required', 'email', 'unique:users'],
+            'password' => ['required'],
+        ];
+    }
+
+    /**
+     * Get the validation messages that apply to the request.
+     *
+     * @return array<string, mixed>
+     */
+    public function messages(): array
+    {
+        return [
+            'email.unique' => "Este email já está sendo usado",
         ];
     }
 }

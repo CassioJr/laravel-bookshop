@@ -1,18 +1,18 @@
 export interface IUser {
     id?: any;
-    nome?: string;
+    name?: string;
     email?: string;
-    senha?: string;
-    confirmarSenha?: string;
+    password?: string;
+    confirmPassword?: string;
 }
 
 export class User implements IUser {
     constructor(
         public id?: number,
-        public nome?: string,
+        public name?: string,
         public email?: string,
-        public senha?: string,
-        public confirmarSenha?: string,
+        public password?: string,
+        public confirmPassword?: string,
     ) {
     }
 }

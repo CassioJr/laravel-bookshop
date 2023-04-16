@@ -1,10 +1,12 @@
 <template>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">MyBookShop</a>
+            <a class="navbar-brand" href="/">📚MyBookShop</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon">
+                     <i class="fas fa-bars"></i>
+                </span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto py-4 py-lg-0 mb-2 mb-lg-0">
@@ -23,4 +25,4 @@
     </nav>
 </template>
 
-<script lang="ts" src="./navbar.component"></script>
+<script lang="ts" src="./navbar.component.ts"></script>

@@ -1,10 +1,10 @@
 <template>
     <div>
-        <navbar-page/>
+        <navbar-page />
         <main>
             <router-view></router-view>
         </main>
-        <footer-page/>
+        <footer-page />
     </div>
 </template>
 

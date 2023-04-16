@@ -4,14 +4,6 @@ import Home from '../app/pages/home.vue';
 import About from '../app/pages/about.vue';
 import Login from '../app/pages/auth/Login.vue';
 import Register from '../app/pages/auth/register.vue';
-import Component from 'vue-class-component';
-
-Component.registerHooks([
-    'beforeRouteEnter',
-    'beforeRouteLeave',
-    'beforeRouteUpdate', // for vue-router 2.2+
-]);
-Vue.use(Router);
 
 export default new Router({
     mode: 'history',
@@ -30,3 +22,5 @@ export default new Router({
         },
     ]
 });
+
+Vue.use(Router);

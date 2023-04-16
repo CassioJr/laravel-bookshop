@@ -18,6 +18,5 @@
                 </div>
             </div>
         </div>
-        <router-link :to="{ name: 'about' }">About</router-link>
     </div>
 </template>

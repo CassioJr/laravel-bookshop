@@ -5,10 +5,10 @@ import AuthService from "./auth.service";
 
 const validations: any = {
     user: {
-        nome: {required},
+        name: {required},
         email: {required, email},
-        senha: {required},
-        confirmarSenha: {required, sameAsPassword: sameAs('senha')}
+        password: {required},
+        confirmPassword: {required, sameAsPassword: sameAs('password')}
     }
 }
 
@@ -16,11 +16,18 @@ const validations: any = {
     validations,
 })
 export default class RegisterComponent extends Vue {
-    private authService: AuthService = new AuthService();
+    @Inject('authService') private authService: () => AuthService;
     public user: IUser = new User();
+    public isSaving = false;
 
-    public submit(){
-        this.authService.registration(this.user).then(res => {
+    public submit() {
+        this.isSaving = true;
+        this.authService().registration(this.user).then(res => {
+            alert('User has successfully registered!');
+            this.isSaving = false;
+        }).catch(err => {
+            alert(err.response.data.message);
+            this.isSaving = false;
         })
     }
 }
