@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,5 +14,3 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/{any}', 'app')->where('any', '.*');
-
-Route::resource('/register', UserController::class);

@@ -26,6 +26,7 @@ export default class RegisterComponent extends Vue {
             alert('User has successfully registered!');
             this.isSaving = false;
         }).catch(err => {
+            console.log(err.response)
             alert(err.response.data.message);
             this.isSaving = false;
         })
