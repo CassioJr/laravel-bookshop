@@ -5,11 +5,15 @@ import AuthService from "../pages/auth/auth.service";
 export default class NavbarComponent extends Vue {
     @Inject('authService') private authService: () => AuthService;
     private hasAuthorities = false;
+
     public logout() {
-        localStorage.removeItem('__application_token');
-        sessionStorage.removeItem('__application_token');
-        this.$store.commit('logout');
-        this.$router.push('/', () => {});
+        this.authService().logout().then(r => {
+            localStorage.removeItem('__application_token');
+            sessionStorage.removeItem('__application_token');
+            this.$store.commit('logout');
+            this.$router.push('/', () => {
+            });
+        });
     }
 
     get authenticated(): boolean {

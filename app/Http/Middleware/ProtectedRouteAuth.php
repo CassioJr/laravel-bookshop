@@ -18,7 +18,7 @@ class ProtectedRouteAuth
     public function handle(Request $request, Closure $next)
     {
         try {
-            $user = JWTAuth::parseToken()->authenticate();
+            JWTAuth::parseToken()->authenticate();
         } catch (\Exception $e) {
             return response()->json(['status' => 'Token Expired'], 401);
         }

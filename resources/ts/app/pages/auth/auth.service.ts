@@ -32,6 +32,20 @@ export default class AuthService {
         });
     }
 
+    public logout(): Promise<any> {
+        return new Promise<any>((resolve, reject) => {
+            axios
+                .post('api/logout')
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    }
+
+
     public retrieveAccount(): Promise<boolean> {
         return new Promise(resolve => {
             axios

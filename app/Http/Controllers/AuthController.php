@@ -64,8 +64,8 @@ class AuthController extends Controller
     public function logout()
     {
         try {
-            auth()->logout(true);
-            return response()->json(201);
+        auth()->logout();
+        return response()->json(201);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }

@@ -24,6 +24,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/register', [AuthController::class, 'store']);
 
+
 Route::middleware([ProtectedRouteAuth::class])->group(function () {
 
     Route::get('/me', [AuthController::class, 'show']);
