@@ -13,9 +13,12 @@ class UserResource extends  JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      */
-    public function toArray($request)
+    public function toArray($request): array|\JsonSerializable|\Illuminate\Contracts\Support\Arrayable
     {
-        return parent::toArray($request);
+        return [
+            'name' => $this->name,
+            'authorities' => $this->roles
+        ];
     }
 
 }

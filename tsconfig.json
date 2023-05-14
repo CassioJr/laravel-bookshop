@@ -6,6 +6,7 @@
         "strict": true,
         "jsx": "preserve",
         "moduleResolution": "node",
-        "strictPropertyInitialization": false
+        "strictPropertyInitialization": false,
+      "allowSyntheticDefaultImports": true
     }
 }

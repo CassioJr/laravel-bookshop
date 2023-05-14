@@ -1,31 +1,49 @@
 import '../bootstrap';
 import Vue from 'vue';
-import router from './routes';
-import App from './app.vue';
+import router from './router/routes';
+import AppComponent from './app.vue';
 import Vuelidate from 'vuelidate';
+import AuthService from "./pages/auth/auth.service";
+import Vuex from 'vuex';
+import {AccountInfoStore} from "./shared/config/store/account-info-store";
+import {setupAxiosInterceptors} from "./shared/config/axios-interceptor";
 
 Vue.use(Vuelidate);
+Vue.use(Vuex);
 
-import NavBarComponent from '../app/components/navbar.vue';
+const store = new Vuex.Store({
+    modules: {
+        AccountInfoStore,
+    },
+});
 
-Vue.component('navbar-page', NavBarComponent);
-
-import FooterComponent from '../app/components/footer.vue';
-
-Vue.component('footer-page', FooterComponent);
-
-import ShowBookComponent from '../app/components/show-book.vue';
-import AuthService from "./pages/auth/auth.service";
-
-Vue.component('show-book', ShowBookComponent);
-
+const accountService = new AuthService(store, router);
+router.beforeEach((to, from, next) => {
+    if (!to.matched.length) {
+        next('/');
+    }
+    if (to.meta && to.meta.authorities && to.meta.authorities.length > 0) {
+        accountService.hasAnyAuthorityAndCheckAuth(to.meta.authorities).then(value => {
+            if (!value) {
+                sessionStorage.setItem('requested-url', to.fullPath);
+                next('/');
+            } else {
+                next();
+            }
+        });
+    } else {
+        next();
+    }
+});
+setupAxiosInterceptors(() => '');
 
 new Vue({
     el: '#app',
-    components: {App},
+    components: {AppComponent},
     template: '<AppComponent/>',
     router,
     provide: {
-        authService: () => new AuthService(),
+        authService: () => accountService,
     },
+    store
 });

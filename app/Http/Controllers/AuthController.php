@@ -6,13 +6,10 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use Illuminate\Http\Client\Request;
-use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
-
-
     /**
      * Store a newly created resource in storage.
      *
@@ -20,7 +17,8 @@ class AuthController extends Controller
      */
     public function store(RegisterRequest $request)
     {
-        User::create($request->all());
+        $user = User::create($request->all());
+        User::assignRole($user);
     }
 
     /**
@@ -29,9 +27,9 @@ class AuthController extends Controller
      * @param User $user
      * @return UserResource
      */
-    public function show(User $user)
+    public function show()
     {
-        return new UserResource($user);
+        return new UserResource(auth()->user());
     }
 
     public function login(LoginRequest $request)
@@ -39,7 +37,8 @@ class AuthController extends Controller
         $data = $request->validated();
         $credentials = [
             'email' => $data['email'],
-            'password' => $data['password']];
+            'password' => $data['password']
+        ];
 
         if (!$token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
@@ -48,7 +47,27 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => auth()->factory()->getTTL() * 60,
+            'user' => new UserResource(auth()->user())
         ]);
+    }
+
+    public function retrieveAccount()
+    {
+        $user = auth()->user();
+        return [
+            'name' => $user->name,
+            'authorities' => $user->roles
+        ];
+    }
+
+    public function logout()
+    {
+        try {
+            auth()->logout(true);
+            return response()->json(201);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
     }
 }

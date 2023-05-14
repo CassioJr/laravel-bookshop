@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Middleware\ProtectedRouteAuth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/register', [AuthController::class, 'store']);
+
+Route::middleware([ProtectedRouteAuth::class])->group(function () {
+
+    Route::get('/me', [AuthController::class, 'show']);
+
+    Route::get('/account', [AuthController::class, 'retrieveAccount']);
+
+    Route::post('/logout', [AuthController::class, 'logout']);
+});

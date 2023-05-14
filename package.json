@@ -5,9 +5,9 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@types/js-cookie": "^3.0.3",
         "@types/node": "^18.14.6",
         "@types/vuelidate": "^0.7.16",
-        "@types/js-cookie": "^3.0.3",
         "axios": "^1.1.2",
         "laravel-vite-plugin": "^0.7.2",
         "lodash": "^4.17.19",
@@ -25,6 +25,8 @@
         "vue-loader": "^17.0.1",
         "vue-property-decorator": "9.1.2",
         "vue-router": "3.5.1",
-        "vuelidate": "^0.7.7"
+        "vue-template-compiler": "^2.7.14",
+        "vuelidate": "^0.7.7",
+        "vuex": "^3.6.2"
     }
 }
