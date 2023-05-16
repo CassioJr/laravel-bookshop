@@ -14,7 +14,7 @@ composer install
 cp .env.example .env
 php artisan key:generate
 ```
-> It is important to change the following line in . env called APP_URL to the same port that Vue is using.
+> It is important to change the following line in . env called APP_URL to the same port that Vite is using.
 
 ```
 npm run dev
